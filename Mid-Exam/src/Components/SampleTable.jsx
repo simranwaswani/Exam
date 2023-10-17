@@ -6,6 +6,22 @@ const SampleTable = ({ data }) => {
   const [filterCity, setFilterCity] = useState('')
   const [filterOccupation, setFilterOccupation] = useState('')
 
+  const handleFilterNameChange = (e) => {
+    setFilterName(e.target.value)
+  }
+
+  const handleFilterAgeChange = (e) => {
+    setFilterAge(e.target.value)
+  }
+
+  const handleFilterCityChange = (e) => {
+    setFilterCity(e.target.value)
+  }
+
+  const handleFilterOccupationChange = (e) => {
+    setFilterOccupation(e.target.value)
+  }
+
   const filteredData = data.filter((item) => {
     const nameMatch = item.name.toLowerCase().includes(filterName.toLowerCase())
     const ageMatch = filterAge === '' || item.age === parseInt(filterAge)
@@ -23,7 +39,7 @@ const SampleTable = ({ data }) => {
         <input
           type='text'
           value={filterName}
-          onChange={(e) => setFilterName(e.target.value)}
+          onChange={handleFilterNameChange}
         />
       </div>
       <div>
@@ -31,44 +47,26 @@ const SampleTable = ({ data }) => {
         <input
           type='number'
           value={filterAge}
-          onChange={(e) => setFilterAge(e.target.value)}
+          onChange={handleFilterAgeChange}
         />
       </div>
       <div>
         <label>City: </label>
-        <select
-          value={filterCity}
-          onChange={(e) => setFilterCity(e.target.value)}
-        >
+        <select value={filterCity} onChange={handleFilterCityChange}>
           <option value=''>All</option>
           <option value='New York'>New York</option>
           <option value='Los Angeles'>Los Angeles</option>
-          <option value='Chicago'>Chicago</option>
-          <option value='San Francisco'>San Francisco</option>
-          <option value='Houston'>Houston</option>
-          <option value='Seattle'>Seattle</option>
-          <option value='Boston'>Boston</option>
-          <option value='Denver'>Denver</option>
-          <option value='Atlanta'>Atlanta</option>
-          <option value='Miami'>Miami</option>
         </select>
       </div>
       <div>
         <label>Occupation: </label>
         <select
           value={filterOccupation}
-          onChange={(e) => setFilterOccupation(e.target.value)}
+          onChange={handleFilterOccupationChange}
         >
           <option value=''>All</option>
           <option value='Engineer'>Engineer</option>
           <option value='Teacher'>Teacher</option>
-          <option value='Designer'>Designer</option>
-          <option value='Accountant'>Accountant</option>
-          <option value='Doctor'>Doctor</option>
-          <option value='Software Engineer'>Software Engineer</option>
-          <option value='Lawyer'>Lawyer</option>
-          <option value='Marketing Manager'>Marketing Manager</option>
-          <option value='Entrepreneur'>Entrepreneur</option>
         </select>
       </div>
       <table>
